@@ -1,1 +1,4 @@
-"Sync overlay and TTS to more instrumentals" 
+Sync overlay and TTS to more instrumentals
+Allow user to choose different source files for the Markov chain
+Allow user to choose which instrumental for the TTS overlay
+Enable public access to ghost-writer website
