@@ -6,7 +6,8 @@ import random
 
 parser = argparse.ArgumentParser()
 parser.add_argument('input_file', type=str, help="The name of the input text")
-input_file = 'raps_all.txt'
+input_name = 'raps_all.txt'
+input_file = 'Source Text Files/' + input_name
 
 LINE_LENGTH = [5, 8]
 
