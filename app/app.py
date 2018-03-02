@@ -6,6 +6,7 @@ from pydub import AudioSegment
 from gtts import gTTS
 #Markov has the methods to generate lyrics - any input file can be used. Default is 'raps_all'
 from lyrics_generator import getLyrics
+from ttr import textToRap
 
 #Create an instance of this class. '__name__' is default for a single module
 app = Flask(__name__)
@@ -21,19 +22,20 @@ def index():
     lyr = getLyrics()
     generated = {'lyrics' : lyr}
     #Verbalize lyrics, save as an mp3
-    print('Verbalizing lyrics...')
-    tts = gTTS(text='    '.join(lyr), lang='en')
-    print('Saving TTS as rap.mp3...')
-    tts.save('rap.mp3')
+    #print('Verbalizing lyrics...')
+    textToRap(lyr)
+    #tts = gTTS(text='    '.join(lyr), lang='en')
+    #print('Saving TTS as rap.mp3...')
+    #tts.save('rap.mp3')
     #Overlay lyric verbalization onto an instrumental. Default instrumental is 'Ultimate' by Denzel Curry
-    print('Importing rap.mp3...')
-    sound1 = AudioSegment.from_mp3('rap.mp3')
-    print('Importing ultimate.mp3...')
-    sound2 = AudioSegment.from_mp3('instrumentals/ultimate.mp3')
-    print('Overlaying rap.mp3 on ultimate.mp3...')
-    output = sound2.overlay(sound1,position=20000)
-    print('Exporting overlay...')
-    output.export('static/mixed_sounds.mp3', format='mp3')
+    #print('Importing rap.mp3...')
+    #sound1 = AudioSegment.from_mp3('rap.mp3')
+    #print('Importing ultimate.mp3...')
+    #sound2 = AudioSegment.from_mp3('instrumentals/ultimate.mp3')
+    #print('Overlaying rap.mp3 on ultimate.mp3...')
+    #output = sound2.overlay(sound1,position=20000)
+    #print('Exporting overlay...')
+    #output.export('static/mixed_sounds.mp3', format='mp3')
     #Give Flask a webpage to display. Generated is a list of lyrics we created. For each line of lyrics, a paragraph is created in the webpage
     print('Rendering webpage...')
     return render_template('index.html', title='Home',generated=generated)
