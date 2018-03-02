@@ -5,7 +5,7 @@ from pydub import AudioSegment
 #Library for our lyrics to be turned into vocals, via text-to-speech
 from gtts import gTTS
 #Markov has the methods to generate lyrics - any input file can be used. Default is 'raps_all'
-from markov_gen_one import getLyrics
+from lyrics_generator import getLyrics
 
 #Create an instance of this class. '__name__' is default for a single module
 app = Flask(__name__)

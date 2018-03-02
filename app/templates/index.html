@@ -7,7 +7,9 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 
-        <title> Ghost Writer - A Rap Generator </title>
+	    <link rel="icon" href="{{url_for('static', filename='icon.png')}}">
+
+        <title> Ghost Writer </title>
 
         <!-- Bootstrap CSS -->
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -16,15 +18,14 @@
 	<body>
 		<style>
 			.jumbotron{width: 80%;
-					height: 80%;
 					position: absolute;
 					margin: auto;
 					top: 0;
 					left: 0;
 					right: 0;}
 		</style>
-		<div class="jumbotron">
-			<div class='container text-center'>
+		<div class="jumbotron container-fluid">
+			<div class="container text-center container-fluid">
 			  <h1 class="display-3">Ghost Writer</h1>
 			  <p class="lead">A simple, elegant markov chain-based rap/hip-hop lyrics generator. Created by parsing Rap Genius.</p>
 			  <hr class="my-4">
@@ -41,6 +42,14 @@
 			<source src="{{url_for('static', filename='mixed_sounds.mp3')}}" type="audio/mp3">
 		</audio>
 
+		<!--
+		<div class="footer-copyright py-3 text-center">
+              <div class="container-fluid">
+                  © 2018 Copyright: Matthew Bass, Kai Fleischman, Michael Lobsenz, Jonathon Martin, Arvind Raghavan
+      
+              </div>
+         </div>
+		-->
 
 		<!-- jQuery first, then Tether, then Bootstrap JS. -->
 	    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
