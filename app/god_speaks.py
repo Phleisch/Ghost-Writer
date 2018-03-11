@@ -1,9 +1,7 @@
 import os
 from pydub import AudioSegment
 from gtts import gTTS
-from rap_god import get_lyrics
-from tempfile import TemporaryFile
-
+from god_rap import get_lyrics
 
 def text_to_rap():
 	result = []
