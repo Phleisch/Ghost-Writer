@@ -18,6 +18,9 @@ def text_to_rap():
 				offset += len(bar)
 				result.append(line)
 			elif i == 0:
+				cut = 54050 - offset
+				song = song.overlay(bar[:cut],position=offset)
+				result.append(line)
 				offset = 54860
 				break
 			elif i == 1 and (offset + len(bar)) <= 92500:
@@ -25,6 +28,9 @@ def text_to_rap():
 				offset += len(bar)
 				result.append(line)
 			elif i == 1:
+				cut = 91610 - offset
+				song = song.overlay(bar[:cut],position=offset)
+				result.append(line)
 				offset = 92500
 				break
 			elif i == 2 and (offset + len(bar)) <= 130500:
@@ -32,6 +38,9 @@ def text_to_rap():
 				offset += len(bar)
 				result.append(line)
 			elif i == 2:
+				cut = 130000 - offset
+				song = song.overlay(bar[:cut],position=offset)
+				result.append(line)
 				offset = 130500
 				break
 			elif i == 3 and (offset + len(bar)) <= 148300:
@@ -39,12 +48,20 @@ def text_to_rap():
 				offset += len(bar)
 				result.append(line)
 			elif i == 3:
+				cut = 148000 - offset
+				song = song.overlay(bar[:cut],position=offset)
+				result.append(line)
 				offset = 148300
 				break
-			elif i == 4 and offset + len(bar) <= 179800:
+			elif offset + len(bar) <= 175800:
 				song = song.overlay(bar,position=offset)
 				offset += len(bar)
 				result.append(line)
+			else:
+				song = song.overlay(bar.fade_out(3000),position=offset)
+				offset += len(bar)
+				result.append(line)
+				break
 		result[-1] += "\n"
 	os.remove("vocals.mp3")
 	song.export("static/ultimate_rap.mp3", format="mp3")
