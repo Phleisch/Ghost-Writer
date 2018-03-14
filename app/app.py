@@ -6,7 +6,7 @@ from pydub import AudioSegment
 from gtts import gTTS
 #Markov has the methods to generate lyrics - any input file can be used. Default is 'raps_all'
 from lyrics_generator import getLyrics
-from ttr import textToRap
+from god_speaks import text_to_rap
 
 #Create an instance of this class. '__name__' is default for a single module
 app = Flask(__name__)
@@ -19,11 +19,10 @@ def index():
     AudioSegment.ffmpeg = 'c:/ffmpeg'
     #Generate lyrics using our Markov chain
     print('Generating lyrics...')
-    lyr = getLyrics()
+    lyr = text_to_rap()
     generated = {'lyrics' : lyr}
     #Verbalize lyrics, save as an mp3
     #print('Verbalizing lyrics...')
-    textToRap(lyr)
     #tts = gTTS(text='    '.join(lyr), lang='en')
     #print('Saving TTS as rap.mp3...')
     #tts.save('rap.mp3')

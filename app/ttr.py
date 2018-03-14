@@ -1,24 +1,65 @@
 import os
 from pydub import AudioSegment
 from gtts import gTTS
-from rap_god import getLyrics
+from lyrics_generator import getLyrics
 
-
-def textToRap(lyrics):
+def textToRap():
+	lyr = getLyrics()
+	allLyrics = []
 	sounds = []
-	texttospeech = []
+	texttospeech = [] 
 	print("", end='')
-	for i in range(0,8):
+	for i in range(0,7):
 		print("\rVocalizing lyrics part %d of 8..." % (i + 1), end='')
-		lyr = lyrics
-		generated = {'lyrics' : lyr}
-		tts = gTTS(text="".join(lyr), lang='en', slow=False)
-		sounds.append(tts)
-		name = "vocals"
-		name = name+str(i)+".mp3"
-		tts.save(name)
-		texttospeech.append((AudioSegment.from_mp3(name) + 5))
-		os.remove(name)
+		temp = gTTS(text=" ", lang='en', slow=False)
+		temp.save("vocals.mp3")
+		sounds.append(AudioSegment.from_mp3("vocals.mp3"))
+		for line in lyr:
+			if i == 0 and sounds[i].duration() < 37250:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)
+			elif i == 1 and sounds[i].duration() < 36750:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)
+			elif i == 2 and sounds[i].duration() < 37500:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)
+			elif i == 3 and sounds[i].duration() < 3600:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)
+			elif i == 4 and sounds[i].duration() < 9150:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)
+			elif i == 5 and sounds[i].duration() < 3750:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)
+			elif sounds[i].duration() < 28500:
+				tts = gTTS(text=line, lang='en', slow=False)
+				tts.save("vocals.mp3")
+				sounds[i] = sounds[i] + AudioSegment.from_mp3("vocals.mp3")
+				sounds[i].save("vocals.mp3")
+				allLyrics.append(line)		
+		texttospeech.append((AudioSegment.from_mp3("vocals.mp3") + 5))
+		os.remove("vocals.mp3")
+		lyr = getLyrics()
 	print("")
 	print("Importing instrumental...")
 	instrumental = (AudioSegment.from_mp3("instrumentals/ultimate.mp3") - 10)
@@ -43,6 +84,7 @@ def textToRap(lyrics):
 	print("")
 	print("Exporting finished song...")
 	songv7.export("static/mixed_sounds.mp3", format="mp3")
+	return allLyrics
 
 if __name__ == '__main__':
 	textToRap()

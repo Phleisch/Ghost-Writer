@@ -5,7 +5,7 @@ from god_rap import get_lyrics
 
 def text_to_rap():
 	result = []
-	song = (AudioSegment.from_mp3("ultimate.mp3") - 10)
+	song = (AudioSegment.from_mp3("instrumentals/ultimate.mp3") - 10)
 	offset = 16750
 	for i in range(0,5):
 		lyr = get_lyrics()
@@ -47,7 +47,7 @@ def text_to_rap():
 				result.append(line)
 		result[-1] += "\n"
 	os.remove("vocals.mp3")
-	song.export("ultimate_rap.mp3", format="mp3")
+	song.export("static/ultimate_rap.mp3", format="mp3")
 	return result
 
 if __name__ == '__main__':
