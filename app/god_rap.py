@@ -117,9 +117,10 @@ class RapIndex:
 
 def get_lyrics():
     index = RapIndex()
+    index_name = input_file[0:(len(input_file)-4)]+".ind"
 
     #print("Building rap index!")
-    if not os.path.exists("index.ind"):
+    if not os.path.exists(index_name):
     	with open(input_file, "r") as f:
         	for line in f:
             	line = line.replace("\s+", " ")
@@ -132,9 +133,9 @@ def get_lyrics():
                     	index.add_markov(words[i].strip(), words[i-1].strip())
                     	i -= 1
                 	index.add_markov(words[i].strip(), "--")
-    	index.save("index.ind")
+    	index.save(index_name)
     else:
-	index.load("index.ind")
+	index.load(index_name)
 
     lyrics = []
     for i in range(4):
