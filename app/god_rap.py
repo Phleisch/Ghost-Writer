@@ -3,7 +3,7 @@ import pickle
 import pronouncing as p
 import argparse
 import random
-from random import randint
+import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('input_file', type=str, help="The name of the input text")
@@ -119,19 +119,23 @@ def get_lyrics():
     index = RapIndex()
 
     #print("Building rap index!")
-    with open(input_file, "r") as f:
-        for line in f:
-            line = line.replace("\s+", " ")
-            if line.strip() != "":
-                words = line.split(" ")
-                i = len(words) - 1
-                if i > 0:
-                    index.add_rhyme(words[i].strip())
-                while i > 0:
-                    index.add_markov(words[i].strip(), words[i-1].strip())
-                    i -= 1
-                index.add_markov(words[i].strip(), "--")
-    #index.save("index.ind")
+    if not os.path.exists("index.ind"):
+    	with open(input_file, "r") as f:
+        	for line in f:
+            	line = line.replace("\s+", " ")
+            	if line.strip() != "":
+                	words = line.split(" ")
+                	i = len(words) - 1
+                	if i > 0:
+                    	index.add_rhyme(words[i].strip())
+                	while i > 0:
+                    	index.add_markov(words[i].strip(), words[i-1].strip())
+                    	i -= 1
+                	index.add_markov(words[i].strip(), "--")
+    	index.save("index.ind")
+    else:
+	index.load("index.ind")
+
     lyrics = []
     for i in range(4):
       rhyme_scheme = randint(1,8)
