@@ -53,11 +53,11 @@ def text_to_rap():
 				result.append(line)
 				offset = 148300
 				break
-			elif offset + len(bar) <= 175800:
+			elif i == 4 and (offset + len(bar)) <= 175800:
 				song = song.overlay(bar,position=offset)
 				offset += len(bar)
 				result.append(line)
-			else:
+			elif i == 4:
 				song = song.overlay(bar.fade_out(3000),position=offset)
 				offset += len(bar)
 				result.append(line)
