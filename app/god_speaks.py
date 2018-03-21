@@ -57,9 +57,10 @@ def text_to_rap():
 				song = song.overlay(bar,position=offset)
 				offset += len(bar)
 				result.append(line)
+				if (offset + len(bar) > 175800):
+					continue
 			elif i == 4:
 				song = song.overlay(bar.fade_out(3000),position=offset)
-				offset += len(bar)
 				result.append(line)
 				break
 		result[-1] += "\n"
